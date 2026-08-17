@@ -103,6 +103,9 @@
 (define_bypass 9 "arcv_rmx100_div_insn" "arcv_rmx100_*" "arcv_mpy_1c_bypass_p")
 (define_bypass 9 "arcv_rmx100_div_insn" "arcv_rmx100_*" "arcv_mpy_2c_bypass_p")
 
+(define_bypass 1 "arcv_rmx100_load_insn" "arcv_rmx100_*" "arcv_ld_1c_bypass_p")
+(define_bypass 2 "arcv_rmx100_load_insn" "arcv_rmx100_*" "arcv_ld_2c_bypass_p")
+
 ;; Even if a specific type attribute is not implemented by a processor
 ;; tune variant, the pipeline description must still provide a valid
 ;; reservation to prevent scheduling errors.

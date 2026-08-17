@@ -165,6 +165,8 @@ extern bool riscv_epilogue_uses (unsigned int);
 extern bool riscv_can_use_return_insn (void);
 extern rtx riscv_function_value (const_tree, const_tree, enum machine_mode);
 extern bool riscv_store_data_bypass_p (rtx_insn *, rtx_insn *);
+extern bool arcv_ld_1c_bypass_p (rtx_insn *, rtx_insn *);
+extern bool arcv_ld_2c_bypass_p (rtx_insn *, rtx_insn *);
 extern rtx riscv_gen_gpr_save_insn (struct riscv_frame_info *);
 extern bool riscv_gpr_save_operation_p (rtx);
 extern void riscv_reinit (void);
