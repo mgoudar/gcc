@@ -12944,9 +12944,6 @@ riscv_option_override (void)
 
   riscv_override_options_internal (&global_options);
 
-  if (TARGET_XMIPSTRIG && riscv_microarchitecture != mips_m8500)
-	error ("extension 'xmipstrig' is only supported for riscv cpu m8500");
-
   /* Save these options as the default ones in case we push and pop them later
      while processing functions with potential target attributes.  */
   target_option_default_node = target_option_current_node

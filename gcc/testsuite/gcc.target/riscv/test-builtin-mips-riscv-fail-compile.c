@@ -3,19 +3,19 @@
 /* { dg-skip-if "" { *-*-* } { "-O0" "-g" } } */
 /* MIPS riscv cpu m8500 trig builtins - test for error */
 float test_builtin1(float x) {
-  return __builtin_riscv_mips_fsinhz(x); /* { dg-error "implicit declaration of function" } */
+  return __builtin_riscv_mips_fsin_hz(x); /* { dg-error "implicit declaration of function" } */
 }
 
 float test_builtin2(float x) {
-  return __builtin_riscv_mips_fcoshz(x); /* { dg-error "implicit declaration of function" } */
+  return __builtin_riscv_mips_fcos_hz(x); /* { dg-error "implicit declaration of function" } */
 }
 
 float test_builtin3(float x) {
-  return __builtin_riscv_mips_ftanhz(x); /* { dg-error "implicit declaration of function" } */
+  return __builtin_riscv_mips_ftan_hz(x); /* { dg-error "implicit declaration of function" } */
 }
 
 float test_builtin4(float x) {
-  return __builtin_riscv_mips_fversinhz(x); /* { dg-error "implicit declaration of function" } */
+  return __builtin_riscv_mips_fversin_hz(x); /* { dg-error "implicit declaration of function" } */
 }
 
 float test_builtin5(float x) {
@@ -27,7 +27,7 @@ float test_builtin6(float x) {
 }
 
 float test_builtin7(float x) {
-  return __builtin_riscv_mips_fatanhz(x); /* { dg-error "implicit declaration of function" } */
+  return __builtin_riscv_mips_fatan_hz(x); /* { dg-error "implicit declaration of function" } */
 }
 
 float test_builtin8(float x) {

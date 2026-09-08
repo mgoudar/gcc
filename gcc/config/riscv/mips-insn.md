@@ -37,7 +37,7 @@
 ;; flti instruction
 (define_insn "riscv_mips_flti"
   [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec[(match_operand:SI 1 "flti_operand" "zlti")]
+	(unspec:SF[(match_operand:SI 1 "flti_operand" "zlti")]
 		   UNSPEC_FLTI))]
   "TARGET_XMIPSTRIG"
   "mips.flti.s %0,%1"
@@ -46,9 +46,8 @@
 
 ;; xmipstrig instructions
 (define_expand "sinsf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_SIN))]
+  [(match_operand:SF 0 "register_operand")
+   (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_1_BY_2PI);
@@ -58,21 +57,9 @@
   }
 )
 
-(define_expand "riscv_mips_asinf_hz"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_ASIN))]
-  "TARGET_XMIPSTRIG"
-  {
-    riscv_output_asinf_hz (operands[0], operands[1]);
-    DONE;
-  }
-)
-
 (define_expand "asinsf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-		(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-			UNSPEC_ASIN))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx temp = riscv_output_asinf_hz (operands[0], operands[1]);
@@ -83,9 +70,8 @@
 )
 
 (define_expand "riscv_mips_acosf_hz"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_ACOS))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx temp = riscv_output_asinf_hz (operands[0], operands[1]);
@@ -98,9 +84,8 @@
 )
 
 (define_expand "acossf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-		(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-			UNSPEC_ACOS))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     emit_insn (gen_riscv_mips_acosf_hz (operands[0], operands[1]));
@@ -120,9 +105,8 @@
 )
 
 (define_expand "cossf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_COS))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_1_BY_2PI);
@@ -142,9 +126,8 @@
 )
 
 (define_expand "tansf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_TAN))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_1_BY_2PI);
@@ -164,9 +147,8 @@
 )
 
 (define_expand "atansf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_ATAN))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_2PI);
@@ -215,9 +197,8 @@
 )
 
 (define_expand "tanhsf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_TANH))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     emit_insn (gen_riscv_mips_fftanh (operands[0], operands[1]));
@@ -235,9 +216,8 @@
 )
 
 (define_expand "log2sf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_LOG2F))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     emit_insn (gen_riscv_mips_fflog2 (operands[0], operands[1]));
@@ -246,9 +226,8 @@
 )
 
 (define_expand "logsf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_LOGF))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_LN_OF_2);
@@ -259,35 +238,8 @@
 )
 
 (define_expand "log10sf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_LOG10F))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_LOG10_OF_2);
-    emit_insn (gen_riscv_mips_fflog2 (operands[0], operands[1]));
-    emit_insn (gen_mulsf3 (operands[0], operands[0], scalereg));
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_logf"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_LOGF))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_LN_OF_2);
-    emit_insn (gen_riscv_mips_fflog2 (operands[0], operands[1]));
-    emit_insn (gen_mulsf3 (operands[0], operands[0], scalereg));
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_log10f"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_LOG10F))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_LOG10_OF_2);
@@ -307,9 +259,8 @@
 )
 
 (define_expand "expsf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_EXPF))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_LOG2_OF_E);
@@ -321,23 +272,8 @@
 )
 
 (define_expand "exp10sf2"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_EXP10F))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_LOG2_OF_10);
-    emit_insn (gen_mulsf3 (scalereg, operands[1], scalereg));
-    emit_insn (gen_riscv_mips_ffexp2 (operands[0], scalereg));
-
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_exp10f"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_EXP10F))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_LOG2_OF_10);
@@ -367,10 +303,9 @@
 )
 
 (define_expand "hypotsf3"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-		(unspec:SF[(match_operand:SF 1 "register_operand" "f")
-			(match_operand:SF 2 "register_operand" "f")]
-				UNSPEC_HYPOTF))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")
+	 (match_operand:SF 2 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx temp_reg1 = gen_reg_rtx (SFmode);
@@ -380,51 +315,15 @@
     emit_insn (gen_mulsf3 (temp_reg2, operands[2], operands[2]));
     emit_insn (gen_addsf3 (temp_reg2, temp_reg2, temp_reg1));
     emit_insn (gen_riscv_mips_ffsqrt (operands[0], temp_reg2));
-
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_hypotf"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")
-		(match_operand:SF 2 "register_operand" "f")]
-		   UNSPEC_HYPOTF))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx temp_reg1 = gen_reg_rtx (SFmode);
-    rtx temp_reg2 = gen_reg_rtx (SFmode);
-
-    emit_insn (gen_mulsf3 (temp_reg1, operands[1], operands[1]));
-    emit_insn (gen_mulsf3 (temp_reg2, operands[2], operands[2]));
-    emit_insn (gen_addsf3 (temp_reg2, temp_reg2, temp_reg1));
-    emit_insn (gen_riscv_mips_ffsqrt (operands[0], temp_reg2));
-
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_atan2f_hz"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")
-			(match_operand:SF 2 "register_operand" "f")]
-		   UNSPEC_ATAN2F_HZ))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx temp_reg1 = gen_reg_rtx (SFmode);
-
-    emit_insn (gen_divsf3 (temp_reg1, operands[1], operands[2]));
-    emit_insn (gen_riscv_mips_fatan_hz (operands[0], temp_reg1));
 
     DONE;
   }
 )
 
 (define_expand "atan2sf3"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-		(unspec:SF[(match_operand:SF 1 "register_operand" "f")
-			(match_operand:SF 2 "register_operand" "f")]
-				UNSPEC_ATAN2F))]
+  [(match_operand:SF 0 "register_operand")
+	 (match_operand:SF 1 "register_operand")
+ 	 (match_operand:SF 2 "register_operand")]
   "TARGET_XMIPSTRIG"
   {
     rtx temp_reg1 = gen_reg_rtx (SFmode);
@@ -434,61 +333,6 @@
 
     rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_2PI);
     emit_insn (gen_mulsf3 (operands[0], operands[0], scalereg));
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_atan2f"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")
-		(match_operand:SF 2 "register_operand" "f")]
-		   UNSPEC_ATAN2F))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx temp_reg1 = gen_reg_rtx (SFmode);
-
-    emit_insn (gen_divsf3 (temp_reg1, operands[1], operands[2]));
-    emit_insn (gen_riscv_mips_fatan_hz (operands[0], temp_reg1));
-
-    rtx scalereg = riscv_get_trig_scale_value (FLTI_CONST_2PI);
-    emit_insn (gen_mulsf3 (operands[0], operands[0], scalereg));
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_tanf_hz_fc"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_TANF_HZ_FC))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx const_0_25 = riscv_get_trig_const (FLI_CONST_0_25_INDEX);
-    rtx temp_reg1 = gen_reg_rtx (SFmode);
-    emit_move_insn (temp_reg1, const_0_25);
-    emit_insn (gen_subsf3 (temp_reg1, temp_reg1, operands[1]));
-    emit_insn (gen_riscv_mips_ftan_hz (operands[0], operands[1]));
-    emit_insn (gen_riscv_mips_ftan_hz (temp_reg1, temp_reg1));
-    emit_insn (gen_riscv_mips_ffrecip (temp_reg1, temp_reg1));
-    emit_insn (gen_fmaxsf3 (operands[0], operands[0], temp_reg1));
-    DONE;
-  }
-)
-
-(define_expand "riscv_mips_atanf_hz_fc"
-  [(set (match_operand:SF 0 "register_operand" "=f")
-	(unspec:SF[(match_operand:SF 1 "register_operand" "f")]
-		   UNSPEC_ATANF_HZ_FC))]
-  "TARGET_XMIPSTRIG"
-  {
-    rtx temp_reg0 = gen_reg_rtx (SFmode);
-    emit_insn (gen_riscv_mips_ffrecip (temp_reg0, operands[1]));
-    rtx const_0_25 = riscv_get_trig_const (FLI_CONST_0_25_INDEX);
-    rtx temp_reg1 = gen_reg_rtx (SFmode);
-    emit_move_insn (temp_reg1, const_0_25);
-    emit_insn (gen_riscv_mips_fatan_hz (temp_reg0, temp_reg0));
-    emit_insn (gen_subsf3 (temp_reg0, temp_reg1, temp_reg0));
-    emit_insn (gen_riscv_mips_fatan_hz (operands[0], operands[1]));
-    emit_insn (gen_fmaxsf3 (operands[0], operands[0], temp_reg0));
     DONE;
   }
 )

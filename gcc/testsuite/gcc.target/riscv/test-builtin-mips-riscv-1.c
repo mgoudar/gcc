@@ -5,7 +5,7 @@
 
 /*
 **test_builtin1:
-**  mips.fsinhz.s fa0,fa0
+**  mips\.fsinhz\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin1(float x) {
@@ -14,7 +14,7 @@ float test_builtin1(float x) {
 
 /*
 **test_builtin2:
-**  mips.fcoshz.s fa0,fa0
+**  mips\.fcoshz\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin2(float x) {
@@ -23,7 +23,7 @@ float test_builtin2(float x) {
 
 /*
 **test_builtin3:
-**  mips.ftanhz.s fa0,fa0
+**  mips\.ftanhz\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin3(float x) {
@@ -32,7 +32,7 @@ float test_builtin3(float x) {
 
 /*
 **test_builtin4:
-**  mips.fversinhz.s fa0,fa0
+**  mips\.fversinhz\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin4(float x) {
@@ -41,7 +41,7 @@ float test_builtin4(float x) {
 
 /*
 **test_builtin5:
-**  mips.ffrecip.s fa0,fa0
+**  mips\.ffrecip\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin5(float x) {
@@ -50,7 +50,7 @@ float test_builtin5(float x) {
 
 /*
 **test_builtin6:
-**  mips.ffrsqrt.s fa0,fa0
+**  mips\.ffrsqrt\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin6(float x) {
@@ -59,7 +59,7 @@ float test_builtin6(float x) {
 
 /*
 **test_builtin7:
-**  mips.fatanhz.s fa0,fa0
+**  mips\.fatanhz\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin7(float x) {
@@ -68,7 +68,7 @@ float test_builtin7(float x) {
 
 /*
 **test_builtin8:
-**  mips.ffexp2.s fa0,fa0
+**  mips\.ffexp2\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin8(float x) {
@@ -77,7 +77,7 @@ float test_builtin8(float x) {
 
 /*
 **test_builtin9:
-**  mips.ffsqrt.s fa0,fa0
+**  mips\.ffsqrt\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin9(float x) {
@@ -86,7 +86,7 @@ float test_builtin9(float x) {
 
 /*
 **test_builtin10:
-**  mips.fftanh.s fa0,fa0
+**  mips\.fftanh\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin10(float x) {
@@ -95,7 +95,7 @@ float test_builtin10(float x) {
 
 /*
 **test_builtin11:
-**  mips.fflog2.s fa0,fa0
+**  mips\.fflog2\.s\s+fa[0-7],fa[0-7]
 **  ret
 */
 float test_builtin11(float x) {

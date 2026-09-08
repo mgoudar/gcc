@@ -53,7 +53,7 @@ DEFINE_RISCV_EXT (
   /* FULL_NAME.  */ "Mips trigonometryextension",
   /* DESC.  */ "",
   /* URL.  */ ,
-  /* DEP_EXTS.  */ ({}),
+  /* DEP_EXTS.  */ ({"f"}),
   /* SUPPORTED_VERSIONS.  */ ({{1, 0}}),
   /* FLAG_GROUP.  */ xmips,
   /* BITMASK_GROUP_ID.  */ BITMASK_NOT_YET_ALLOCATED,
